@@ -208,6 +208,7 @@ Setelah itu buka terminal dan masuk ke dalam dir yang terdapat file pcapnya, dan
 ` untuk menemukan usb.capdata pada file tersbut dan memasukann hasilnya pada keystroke.txt
 <img width="780" height="60" alt="image" src="https://github.com/user-attachments/assets/f518d74b-2da0-4e75-b242-a463c1759607" />
 Buat sebuah file solver yang nantinya akan digunakan untuk decode file final.pcapng. FIle berupa file phyton dengan nama `decode_keystroke.py`
+
 ```
 #!/usr/bin/env python3
 # decode_keyboard.py
@@ -278,12 +279,19 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
 Kode tersebut akan membuat file `final.pcapng` di decode dengan format pada phyton
+
 <img width="782" height="33" alt="image" src="https://github.com/user-attachments/assets/19c54f19-a1dc-4474-94a1-678b89e69524" />
+
 Dan didapatkan hasil sebagai berikut yang merupakan jawaban soal ke-2
+
 <img width="984" height="141" alt="image" src="https://github.com/user-attachments/assets/4dfb0edc-8582-43cd-8196-b03614750af2" />
+
 Kemudian kita gunakan decode base 64 dan didapatkan soal terakhir sehingga flag dapat ditemukan seutuhnya
+
 <img width="1110" height="394" alt="image" src="https://github.com/user-attachments/assets/a2d4321c-1df6-43ce-a172-2ccf169e14ce" />
+
 
 
 
