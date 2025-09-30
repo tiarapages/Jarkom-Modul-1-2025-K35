@@ -165,6 +165,77 @@ chmod x+ traffic.sh
 
 ***
 
+14.
+- How many packets are recorded in the pcapng file? `500358`
+
+<img width="176" height="63" alt="Screenshot 2025-09-29 183216" src="https://github.com/user-attachments/assets/07a5f318-8ee7-40e6-9dab-0cb4a9f7bcb7" />
+
+- What are the user that successfully logged in? `n1enna:y4v4nn4_k3m3nt4r1`
+
+<img width="1872" height="848" alt="Screenshot 2025-09-29 182650" src="https://github.com/user-attachments/assets/6a125162-b639-4f1c-b51a-f3598fc17afa" />
+
+- In which stream were the credentials found? `41824`
+
+<img width="255" height="81" alt="Screenshot 2025-09-29 182832" src="https://github.com/user-attachments/assets/becb65f4-37d2-4cf6-a92c-3a43a262baca" />
+
+- What tools are used for brute force? `Fuzz Faster U Fool v2.1.0-dev`
+
+<img width="423" height="42" alt="Screenshot 2025-09-29 183124" src="https://github.com/user-attachments/assets/5e11c485-3cdb-46b1-a62b-0ed96d7700c1" />
+
+```
+Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_XL99oxmMPifll1JV9benttW21}
+```
+
+<img width="691" height="382" alt="Screenshot 2025-09-30 154504" src="https://github.com/user-attachments/assets/0f27068e-f5bb-4b8a-8a95-dcb2dbc352e5" />
+
+15.
+- What device does Melkor use? `Keyboard`
+
+menggunakan `usb.bDescriptorType == 0x03 and usb.data_len > 0`
+
+<img width="781" height="136" alt="Screenshot 2025-09-29 175400" src="https://github.com/user-attachments/assets/980606ad-6dcb-404f-9f2f-bd5c5620c43e" />
+
+16.
+- What credential did the attacker use to log in? `ind@psg420:{6r_6e#TfT1p`
+
+<img width="1229" height="79" alt="Screenshot 2025-09-30 155516" src="https://github.com/user-attachments/assets/0fe35f97-b421-460a-8413-0aef1e493bce" />
+<img width="421" height="101" alt="Screenshot 2025-09-30 155533" src="https://github.com/user-attachments/assets/85db3570-ad17-4618-b2ad-8eeb0cb84eab" />
+
+- How many files are suspected of containing malware? `5` -> Menggunakan `ftp-data` lalu akan muncul 5 yaitu QWERT
+
+File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem operasi. Dalam konteks praktikum ini, file tersebut digunakan sebagai bagian dari simulasi komunikasi antara node. Oleh karena itu, file `.exe` harus disimpan terlebih dahulu agar dapat dijalankan di lingkungan uji. Perintah `sha256sum` digunakan untuk menghasilkan nilai hash dari suatu file. Nilai hash ini berfungsi sebagai “sidik jari digital” file, yang unik untuk setiap isi file. Setelah menjalankan perintah `sha256sum` nama_file.exe, sistem akan menampilkan deretan karakter heksadesimal sepanjang 64 digit.
+
+- What is the hash of the first file (q.exe)? `a34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd`
+
+- What is the hash of the second file (q.exe)? `08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc`
+
+- What is the hash of the third file (e.exe)? `32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199`
+
+- What is the hash of the fourth file (r.exe)? `4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884`
+
+- What is the hash of the fifth file (t.exe)? `10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a`
+
+<img width="624" height="361" alt="Screenshot 2025-09-29 195038" src="https://github.com/user-attachments/assets/2bb64d2a-b407-4260-9af1-d28f6a830550" />
+
+17.
+
+Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi.
+
+- What is the name of the first suspicious file? `Invoice&MSO-Request.doc`
+  
+- What is the name of the second suspicious file? `knr.exe`
+  
+- What is the hash of the second suspicious file (knr.exe)? `749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18`
+
+```
+KOMJAR25{M4ster_4n4lyzer_5e8X5lLodU1wEOR4jIwlznzkA}
+```
+
+
+
+
+
+
 
 
 
