@@ -132,7 +132,40 @@ iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.81.0.0/16
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
+<img width="1702" height="654" alt="Screenshot 2025-09-30 144622" src="https://github.com/user-attachments/assets/5451b21d-3339-4570-860f-d11274860ee6" /> 
+
 ***
+
+<img width="1451" height="632" alt="Screenshot 2025-09-30 144713" src="https://github.com/user-attachments/assets/6a7f56a4-c8c5-4d9f-862f-dba851b1b735" />
+
+***
+6.
+Melkor mencoba melakukan penyusupan (interception) terhadap komunikasi antara Manwe dan Eru. Untuk itu, file uji yang telah disediakan diunduh menggunakan perintah wget, kemudian dijalankan pada node Manwe. Selanjutnya dilakukan packet sniffing menggunakan Wireshark pada koneksi antara Manwe dan Eru. Setelah itu, diterapkan display filter untuk menampilkan seluruh paket yang berasal dari atau menuju alamat IP milik Manwe.
+-Pada terminal node Manwe, unduh file wget
+```
+wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1bE3kF1Nclw0VyKq4bL2VtOOt53IC7lG5' -O traffic.zip
+```
+-Unzip file
+```
+unzip traffic.zip
+```
+-lalu, akan ada 2 file yaitu `traffic.sh` dan `traffic.zip`, pilih `traffic.sh`
+```
+cat traffic.sh
+```
+-Berikan izin eksekusi pada file
+```
+chmod x+ traffic.sh
+```
+-Jalankan file tersebut
+```
+./traffic.sh
+```
+-Setelah proses packet sniffing dijalankan, Wireshark akan menampilkan paket-paket komunikasi antara Manwe dan Eru sesuai dengan display filter yang telah diterapkan. Proses capture dibiarkan berlangsung hingga seluruh komunikasi yang dibutuhkan berhasil ditangkap. Setelah itu, proses capture dihentikan dan hasil tangkapan paket disimpan
+
+***
+
+
 
 
 
