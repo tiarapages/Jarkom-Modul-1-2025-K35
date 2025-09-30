@@ -202,11 +202,16 @@ menggunakan `usb.bDescriptorType == 0x03 and usb.data_len > 0`
 Pertama kita gunakan filter untuk membuat file dari n0 15 hanya menampilkan info URB_INTERRUPT in dari pcapng.
 
 <img width="1589" height="674" alt="image" src="https://github.com/user-attachments/assets/d45371fc-e3b1-42c8-a433-c6eb0b2fbde9" />
+
 Kemudian kita bisa export spesified file dan menamainya bisa final.pcapng
+
 <img width="778" height="370" alt="image" src="https://github.com/user-attachments/assets/602f4fc2-d347-41c5-90c4-9899cd611347" />
+
 Setelah itu buka terminal dan masuk ke dalam dir yang terdapat file pcapnya, dan jalankan command ini `tshark -r ~/Downloads/final.pcapng -Y "usb.capdata" -T fields -e usb.capdata | tr -d : >> keystroke.txt
 ` untuk menemukan usb.capdata pada file tersbut dan memasukann hasilnya pada keystroke.txt
+
 <img width="780" height="60" alt="image" src="https://github.com/user-attachments/assets/f518d74b-2da0-4e75-b242-a463c1759607" />
+
 Buat sebuah file solver yang nantinya akan digunakan untuk decode file final.pcapng. FIle berupa file phyton dengan nama `decode_keystroke.py`
 
 ```
