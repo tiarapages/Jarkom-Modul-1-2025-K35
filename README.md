@@ -125,11 +125,16 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 ***
 
 5.
-Agar semua konfigurasi yang telah dilakukan tidak hilang ketika node di-restart, maka setiap pengaturan jaringan perlu disimpan secara permanen pada masing-masing perangkat. Hal ini meliputi konfigurasi alamat IP, Default Gateway, serta DNS Server. Caranya yaitu dengan melakukan `iptables` pada Eru
+Agar semua konfigurasi yang telah dilakukan tidak hilang ketika node di-restart, maka setiap pengaturan jaringan perlu disimpan secara permanen pada masing-masing perangkat. Hal ini meliputi konfigurasi alamat IP, Default Gateway, serta DNS Server. caranya yaitu memasukkan command yang ingin selalu dijalankan di node tersebut ke file `/root/.bashrc` di bagian paling bawah. Untuk Eru kita memasukkan `iptables` dan yang lain menggunakan `echo nameserver`
 
 ```
-iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.81.0.0/16
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.81.0.0/16  
+echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+
+***
+
+
 
 
 
