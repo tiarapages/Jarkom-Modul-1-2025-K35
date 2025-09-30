@@ -5,7 +5,7 @@
 | Tiara Putri Prasetya | 5027241013 |
 | Naufal Ardhana | 5027241118 |
 
-1. 
+ # 1. 
 Pada tahap perancangan, Eru yang berperan sebagai Router menambahkan dua buah Switch/Gateway untuk mendistribusikan koneksi jaringan. Switch 1 dikonfigurasikan agar terhubung dengan dua Client, yaitu Melkor dan Manwe. Sedangkan Switch 2 dikonfigurasikan untuk terhubung dengan dua Client lainnya, yaitu Varda dan Ulmo. Dengan demikian, keempat Client tersebut dapat berkomunikasi melalui jaringan yang dikelola oleh Router Eru.
 -Pertama,  setting network masing-masing node dengan fitur Edit network configuration, Prefix IP menggunakan `10.81` untuk kelompok 35
 Eru
@@ -66,7 +66,7 @@ iface eth0 inet static
 
 ***
 
-2.
+# 2.
 Konfigurasi agar Eru yang berperan sebagai Router dapat terhubung dengan internet. Hal ini bertujuan untuk memberikan akses konektivitas eksternal sehingga jaringan lokal yang telah dibangun dapat berkomunikasi dengan jaringan global. Agar terhubung ke jaringan global, menggunakan
 
 ```
@@ -81,7 +81,7 @@ ping google.com
 <img width="1212" height="172" alt="Screenshot 2025-09-30 131550" src="https://github.com/user-attachments/assets/617479ea-83b0-4632-9039-eb37e23259e1" /> 
 
 ***
-3.
+# 3.
 Agar setiap Ainur (Client) dapat terhubung satu sama lain, perlu mencobanya satu per satu. Contohnya menghubungkan Manwe ke Ulmo, yaitu dengan memasukkan
 ```
 root@Manwe:~# ping 10.81.2.3
@@ -90,7 +90,7 @@ root@Manwe:~# ping 10.81.2.3
 
 ***
 
-4.
+# 4.
 Eru ingin agar setiap Ainur (Client) dapat mandiri. Oleh karena itu pastikan agar setiap Client dapat tersambung ke internet.
 -Yaitu dengan
 ```
@@ -124,7 +124,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 
 ***
 
-5.
+# 5.
 Agar semua konfigurasi yang telah dilakukan tidak hilang ketika node di-restart, maka setiap pengaturan jaringan perlu disimpan secara permanen pada masing-masing perangkat. Hal ini meliputi konfigurasi alamat IP, Default Gateway, serta DNS Server. caranya yaitu memasukkan command yang ingin selalu dijalankan di node tersebut ke file `/root/.bashrc` di bagian paling bawah. Untuk Eru kita memasukkan `iptables` dan yang lain menggunakan `echo nameserver`
 
 ```
@@ -139,7 +139,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 <img width="1451" height="632" alt="Screenshot 2025-09-30 144713" src="https://github.com/user-attachments/assets/6a7f56a4-c8c5-4d9f-862f-dba851b1b735" />
 
 ***
-6.
+# 6.
 Melkor mencoba melakukan penyusupan (interception) terhadap komunikasi antara Manwe dan Eru. Untuk itu, file uji yang telah disediakan diunduh menggunakan perintah wget, kemudian dijalankan pada node Manwe. Selanjutnya dilakukan packet sniffing menggunakan Wireshark pada koneksi antara Manwe dan Eru. Setelah itu, diterapkan display filter untuk menampilkan seluruh paket yang berasal dari atau menuju alamat IP milik Manwe.
 -Pada terminal node Manwe, unduh file wget
 ```
@@ -165,7 +165,7 @@ chmod x+ traffic.sh
 
 ***
 
-14.
+# 14.
 - How many packets are recorded in the pcapng file? `500358`
 
 <img width="176" height="63" alt="Screenshot 2025-09-29 183216" src="https://github.com/user-attachments/assets/07a5f318-8ee7-40e6-9dab-0cb4a9f7bcb7" />
@@ -188,14 +188,14 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_XL99oxmMPifll1JV9benttW
 
 <img width="691" height="382" alt="Screenshot 2025-09-30 154504" src="https://github.com/user-attachments/assets/0f27068e-f5bb-4b8a-8a95-dcb2dbc352e5" />
 
-15.
+# 15.
 - What device does Melkor use? `Keyboard`
 
 menggunakan `usb.bDescriptorType == 0x03 and usb.data_len > 0`
 
 <img width="781" height="136" alt="Screenshot 2025-09-29 175400" src="https://github.com/user-attachments/assets/980606ad-6dcb-404f-9f2f-bd5c5620c43e" />
 
-16.
+# 16.
 - What credential did the attacker use to log in? `ind@psg420:{6r_6e#TfT1p`
 
 <img width="1229" height="79" alt="Screenshot 2025-09-30 155516" src="https://github.com/user-attachments/assets/0fe35f97-b421-460a-8413-0aef1e493bce" />
@@ -217,7 +217,7 @@ File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem oper
 
 <img width="624" height="361" alt="Screenshot 2025-09-29 195038" src="https://github.com/user-attachments/assets/2bb64d2a-b407-4260-9af1-d28f6a830550" />
 
-17.
+# 17.
 
 Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi.
 
@@ -231,7 +231,7 @@ Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek 
 KOMJAR25{M4ster_4n4lyzer_5e8X5lLodU1wEOR4jIwlznzkA}
 ```
 
-18.
+# 18.
 
 Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut.
 
@@ -255,7 +255,7 @@ KOMJAR25{Y0u_4re_g0dl1ke_rd6nqSP2WXo3hnjT1XazFnLnk}
 
 <img width="768" height="446" alt="Screenshot 2025-09-30 163143" src="https://github.com/user-attachments/assets/2d84543b-faa7-4728-900f-03a71ecf44f8" />
 
-19.
+# 19.
 Who sent the threatening message? `Your Life`
 
 How much ransom did the attacker demand ($)? `1600`
@@ -268,7 +268,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_s0GIAQDBcilWt0Ul
 <img width="313" height="72" alt="Screenshot 2025-09-30 164224" src="https://github.com/user-attachments/assets/d632faba-a3c8-447c-8127-b3ded89e06a2" />
 <img width="792" height="142" alt="Screenshot 2025-09-30 164238" src="https://github.com/user-attachments/assets/828c28ec-ae95-46c5-8d3f-a5f8c4ca0f4a" />
 
-20.
+# 20.
 
 
 
