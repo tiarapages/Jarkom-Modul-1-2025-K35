@@ -195,6 +195,98 @@ menggunakan `usb.bDescriptorType == 0x03 and usb.data_len > 0`
 
 <img width="781" height="136" alt="Screenshot 2025-09-29 175400" src="https://github.com/user-attachments/assets/980606ad-6dcb-404f-9f2f-bd5c5620c43e" />
 
+-What did Melkor write? `UGx6X3ByMHYxZGVfeTB1cl91czNybjRtZV80bmRfcDRzc3cwcmQ=`
+
+<img width="1089" height="578" alt="image" src="https://github.com/user-attachments/assets/dac53f66-d035-4711-bc0c-cecd748289bf" />
+
+Pertama kita gunakan filter untuk membuat file dari n0 15 hanya menampilkan info URB_INTERRUPT in dari pcapng.
+
+<img width="1589" height="674" alt="image" src="https://github.com/user-attachments/assets/d45371fc-e3b1-42c8-a433-c6eb0b2fbde9" />
+Kemudian kita bisa export spesified file dan menamainya bisa final.pcapng
+<img width="778" height="370" alt="image" src="https://github.com/user-attachments/assets/602f4fc2-d347-41c5-90c4-9899cd611347" />
+Setelah itu buka terminal dan masuk ke dalam dir yang terdapat file pcapnya, dan jalankan command ini `tshark -r ~/Downloads/final.pcapng -Y "usb.capdata" -T fields -e usb.capdata | tr -d : >> keystroke.txt
+` untuk menemukan usb.capdata pada file tersbut dan memasukann hasilnya pada keystroke.txt
+<img width="780" height="60" alt="image" src="https://github.com/user-attachments/assets/f518d74b-2da0-4e75-b242-a463c1759607" />
+Buat sebuah file solver yang nantinya akan digunakan untuk decode file final.pcapng. FIle berupa file phyton dengan nama `decode_keystroke.py`
+```
+#!/usr/bin/env python3
+# decode_keyboard.py
+# Usage:
+#   python3 decode_keyboard.py keystroke.txt
+import sys, os
+
+# mappings
+l = {i: chr(ord('a') + (i-4)) for i in range(4, 30)}   # 4..29 -> a..z
+nums = {
+ 30:('1','!'),31:('2','@'),32:('3','#'),33:('4','$'),34:('5','%'),
+ 35:('6','^'),36:('7','&'),37:('8','*'),38:('9','('),39:('0',')')
+}
+for k,(low,up) in nums.items():
+    l[k]=low
+
+others = {
+ 40:('','\n'), 44:(' ',' '),45:('-','_'),46:('=','+'),47:('[','{'),48:(']','}'),
+ 49:('\\','|'),51:(';',':'),52:("'",'"'),53:('`','~'),54:(',','<'),55:('.','>'),56:('/','?')
+}
+for k,(low,up) in others.items():
+    l[k]=low
+
+# reverse uppercase map handled by shift flag (we will use upper() for letters; numbers use nums)
+def decode_report(hexline):
+    s = hexline.strip().replace(':','').replace(' ','')
+    if len(s) < 6:
+        return ''
+    try:
+        ba = bytearray.fromhex(s)
+    except:
+        return ''
+    if len(ba) < 3:
+        return ''
+    mod = ba[0]
+    key = ba[2]
+    if key == 0:
+        return ''
+    shift = (mod & 0x02) != 0 or (mod & 0x20) != 0
+    # letters
+    if 4 <= key <= 29:
+        ch = chr(ord('a') + (key - 4))
+        return ch.upper() if shift else ch
+    # numbers with shift symbols
+    if key in nums:
+        return nums[key][1] if shift else nums[key][0]
+    # other mapped keys
+    if key in others:
+        low,up = others[key]
+        return up if shift else low
+    # fallback: unknown -> return empty or hex
+    return ''
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python3 decode_keyboard.py keystroke.txt", file=sys.stderr); sys.exit(1)
+    path = sys.argv[1]
+    if not os.path.exists(path):
+        print("File not found:", path, file=sys.stderr); sys.exit(1)
+    out=[]
+    with open(path,'r',errors='ignore') as f:
+        for line in f:
+            ch = decode_report(line)
+            if ch:
+                out.append(ch)
+    print(''.join(out))
+
+if __name__ == '__main__':
+    main()
+```
+Kode tersebut akan membuat file `final.pcapng` di decode dengan format pada phyton
+<img width="782" height="33" alt="image" src="https://github.com/user-attachments/assets/19c54f19-a1dc-4474-94a1-678b89e69524" />
+Dan didapatkan hasil sebagai berikut yang merupakan jawaban soal ke-2
+<img width="984" height="141" alt="image" src="https://github.com/user-attachments/assets/4dfb0edc-8582-43cd-8196-b03614750af2" />
+Kemudian kita gunakan decode base 64 dan didapatkan soal terakhir sehingga flag dapat ditemukan seutuhnya
+<img width="1110" height="394" alt="image" src="https://github.com/user-attachments/assets/a2d4321c-1df6-43ce-a172-2ccf169e14ce" />
+
+
+
 # 16.
 - What credential did the attacker use to log in? `ind@psg420:{6r_6e#TfT1p`
 
