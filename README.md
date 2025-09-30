@@ -231,6 +231,48 @@ Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek 
 KOMJAR25{M4ster_4n4lyzer_5e8X5lLodU1wEOR4jIwlznzkA}
 ```
 
+18.
+
+Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut.
+
+- How many files are suspected of containing malware? `2`
+  
+<img width="494" height="527" alt="Screenshot 2025-09-30 160949" src="https://github.com/user-attachments/assets/2df18c12-9fb9-4eca-aed9-3e178794ccf7" />
+<img width="736" height="158" alt="Screenshot 2025-09-30 161015" src="https://github.com/user-attachments/assets/312598dd-1fa1-4e4c-b91a-bd7212dfaffb" />
+
+
+- What is the name of the first malicious file? `d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe `
+
+- Apa nama file berbahaya yang kedua? `oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe`
+
+- What is the hash of the first malicious file? `59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040`
+
+- What is the hash of the second malicious file? `cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560`
+
+```
+KOMJAR25{Y0u_4re_g0dl1ke_rd6nqSP2WXo3hnjT1XazFnLnk}
+```
+
+<img width="768" height="446" alt="Screenshot 2025-09-30 163143" src="https://github.com/user-attachments/assets/2d84543b-faa7-4728-900f-03a71ecf44f8" />
+
+19.
+Who sent the threatening message? `Your Life`
+
+How much ransom did the attacker demand ($)? `1600`
+
+What is the attacker's bitcoin wallet? `1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL`
+
+```
+Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_s0GIAQDBcilWt0UlOrrUXgl7y}
+```
+<img width="313" height="72" alt="Screenshot 2025-09-30 164224" src="https://github.com/user-attachments/assets/d632faba-a3c8-447c-8127-b3ded89e06a2" />
+<img width="792" height="142" alt="Screenshot 2025-09-30 164238" src="https://github.com/user-attachments/assets/828c28ec-ae95-46c5-8d3f-a5f8c4ca0f4a" />
+
+20.
+
+
+
+
 
 
 
