@@ -167,14 +167,17 @@ chmod x+ traffic.sh
 
 # 14.
 - How many packets are recorded in the pcapng file? `500358`
+  Dengan Melihat pojok bawah Wireshark (Status Bar)
 
 <img width="176" height="63" alt="Screenshot 2025-09-29 183216" src="https://github.com/user-attachments/assets/07a5f318-8ee7-40e6-9dab-0cb4a9f7bcb7" />
 
 - What are the user that successfully logged in? `n1enna:y4v4nn4_k3m3nt4r1`
+  Menggunakan cara manual dikarenakan merupakan Brute force, dan memilih paket terakhir karena Wireshark merekam semua percobaan secara berurutan, maka percobaan yang berhasil itu pasti terekam sebagai yang terakhir dalam rentetan serangan tersebut.
 
 <img width="1872" height="848" alt="Screenshot 2025-09-29 182650" src="https://github.com/user-attachments/assets/6a125162-b639-4f1c-b51a-f3598fc17afa" />
 
 - In which stream were the credentials found? `41824`
+  Dengan Melihat pojok kanan bawah Wireshark pada packet yang dipilih
 
 <img width="255" height="81" alt="Screenshot 2025-09-29 182832" src="https://github.com/user-attachments/assets/becb65f4-37d2-4cf6-a92c-3a43a262baca" />
 
@@ -191,7 +194,10 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_XL99oxmMPifll1JV9benttW
 # 15.
 - What device does Melkor use? `Keyboard`
 
-menggunakan `usb.bDescriptorType == 0x03 and usb.data_len > 0`
+menggunakan 
+```
+usb.bDescriptorType == 0x03 and usb.data_len > 0
+```
 
 <img width="781" height="136" alt="Screenshot 2025-09-29 175400" src="https://github.com/user-attachments/assets/980606ad-6dcb-404f-9f2f-bd5c5620c43e" />
 
@@ -376,10 +382,31 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_s0GIAQDBcilWt0Ul
 # 20.
 1. Buka file PCAP di Wireshark, lalu masuk ke Edit → Preferences → Protocols → TLS
    Wireshark hanya bisa menampilkan paket TLS sebagai Application Data terenkripsi. Agar bisa membaca isi sebenarnya (misalnya HTTP), kita perlu mengaktifkan fitur dekripsi TLS. Fitur ini diatur melalui menu Preferences, khususnya pada bagian protokol TLS. Dengan membuka pengaturan ini, kita memberi tahu Wireshark bahwa akan ada tambahan informasi (kunci) yang bisa dipakai untuk mendekripsi sesi TLS.
-2. Isi (Pre)-Master-Secret log filename dengan keylogfile.txt
-3. paket TLS akan “terurai” jadi HTTP/HTTP2 (bukan lagi payload acak)
-4. Export object HTTP
-5. Temukan invest_20.dll
+   <img width="775" height="439" alt="Screenshot 2025-10-01 204251" src="https://github.com/user-attachments/assets/a5fcd498-9035-452d-89ca-cc354fa2e965" />
+
+3. Isi (Pre)-Master-Secret log filename dengan keylogfile.txt
+   Dengan memasukkan path file ini, Wireshark dapat menggunakan key tersebut untuk mendekripsi sesi
+4. paket TLS akan “terurai” jadi HTTP/HTTP2 (bukan lagi payload acak)
+   Setelah berhasil, paket yang sebelumnya tampil, sekarang muncul sebagai protokol HTTP/HTTP2 dengan header dan body yang terbaca
+6. Export object HTTP
+   Setelah trafik HTTP terlihat, Wireshark bisa merekonstruksi objek yang dikirim lewat HTTP (file yang di-download/upload). Hal ini akan mendapatkan file mentah yang ditransfer lewat HTTP dari pcap
+8. Temukan invest_20.dll
+<img width="506" height="156" alt="Screenshot 2025-10-01 204349" src="https://github.com/user-attachments/assets/dd23755c-c9b9-4b6d-afb0-503d03bbb54e" />
+
+What encryption method is used? `TLS`
+
+Cipher suite digunakan dalam protokol komunikasi yang aman untuk mengenkripsi data. Protokol yang paling umum menggunakan cipher suite adalah TLS (Transport Layer Security) atau pendahulunya, SSL (Secure Sockets Layer). 
+<img width="637" height="122" alt="Screenshot 2025-10-01 212741" src="https://github.com/user-attachments/assets/6d3aa4a3-4385-4a6f-ac28-03ef56b950d0" />
+
+
+What is the name of the malicious file placed by the attacker? `invest_20.dll`
+
+What is the hash of the file containing the malware? `31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f `
+
+```
+Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_I7eT6tlYa0dLkLjtC7EPT9PCt}
+```
+
 
 
 
