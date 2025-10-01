@@ -165,6 +165,59 @@ chmod x+ traffic.sh
 
 ***
 
+# 7. 
+Untuk meningkatkan keamanan, Eru memutuskan untuk membuat sebuah FTP Server di node miliknya.
+<img width="934" height="384" alt="image" src="https://github.com/user-attachments/assets/ff309fa7-c580-41b1-94df-bd2197027fd5" />
+
+Jalankan beberapa command yang tertera mulai dari masuk ke telnet, kemudian lanjut install dan setup vstpd.conf
+
+Lakukan konfigurasi FTP Server pada node Eru. Buat dua user baru: ainur dengan hak akses write&read dan melkor tanpa hak akses sama sekali ke direktori shared.
+<img width="713" height="234" alt="image" src="https://github.com/user-attachments/assets/735c2980-df9d-4c9d-a5ab-c5d3bd1c6076" />
+<img width="480" height="367" alt="image" src="https://github.com/user-attachments/assets/b60e862d-8d3c-486d-8ec6-6f324c473cfe" />
+
+Konfigurasikan setup vstpd sesuai dengan filter yang tertera dan baut suatu file didalam Eru
+
+<img width="906" height="555" alt="image" src="https://github.com/user-attachments/assets/5fa1d6ad-853b-434b-8909-d510065d0001" />
+
+Masuk Sebagai Ainur dan Melkor serta uji kedua file tersebut sama sama untuk hak akses, dimana Ainur read dan write dan melkor tidak ada akses sama sekali terhadap ftp. Dapat kita lihat jika teks tersebut dapat diakses Ainur dengan seksama dan melkor tidak bisa.
+
+<img width="1048" height="670" alt="image" src="https://github.com/user-attachments/assets/d4c0e051-40d7-4b27-a210-29305750929c" />
+
+# 8.
+Ulmo, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node Eru. Lakukan koneksi sebagai client dari node Ulmo ke FTP Server Eru menggunakan user ainur.
+
+<img width="832" height="372" alt="image" src="https://github.com/user-attachments/assets/b5b9c131-8fb6-4e04-a1c6-070d60de19af" />
+<img width="836" height="383" alt="image" src="https://github.com/user-attachments/assets/ea08dbb0-45bb-40cb-8ea9-f09d88a11367" />
+
+# 9.
+<img width="831" height="453" alt="image" src="https://github.com/user-attachments/assets/7a498984-d10d-4b44-b5b0-1ce91cba0ef4" />
+
+# 10.
+<img width="959" height="554" alt="image" src="https://github.com/user-attachments/assets/a61137e7-3448-4053-9d28-109193cca28c" />
+
+# 11.
+<img width="647" height="183" alt="image" src="https://github.com/user-attachments/assets/b3b1dc77-8e4d-4005-a684-5aad09a24844" />
+
+<img width="987" height="266" alt="image" src="https://github.com/user-attachments/assets/fe0b96fa-d475-4efb-be82-4f90d21f5a01" />
+
+<img width="560" height="247" alt="image" src="https://github.com/user-attachments/assets/7041928f-0bc0-45f5-afe6-fadea3e4b59a" />
+
+<img width="931" height="854" alt="image" src="https://github.com/user-attachments/assets/b42310a5-ec8a-4745-a383-d82379f13fd3" />
+
+# 12.
+<img width="854" height="466" alt="image" src="https://github.com/user-attachments/assets/0e4af7c6-0493-4596-b53c-2d3ad8317de8" />
+
+# 13. 
+<img width="978" height="627" alt="image" src="https://github.com/user-attachments/assets/70553c05-6544-4c8e-b322-a68da613782c" />
+
+<img width="989" height="484" alt="image" src="https://github.com/user-attachments/assets/eb23cdd3-3754-4a44-a0f6-65d1ac6f90bc" />
+
+<img width="860" height="336" alt="image" src="https://github.com/user-attachments/assets/03ebea1b-97fb-45e4-8f38-ae1c9d5a7aa2" />
+
+<img width="1008" height="459" alt="image" src="https://github.com/user-attachments/assets/4038e056-1556-43f6-90c4-f131e7838f4d" />
+
+<img width="673" height="330" alt="image" src="https://github.com/user-attachments/assets/bf44a9c6-306a-4fd5-866e-9d323da8338b" />
+
 # 14.
 - How many packets are recorded in the pcapng file? `500358`
   Dengan Melihat pojok bawah Wireshark (Status Bar)
