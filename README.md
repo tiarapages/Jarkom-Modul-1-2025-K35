@@ -374,10 +374,12 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_s0GIAQDBcilWt0Ul
 <img width="792" height="142" alt="Screenshot 2025-09-30 164238" src="https://github.com/user-attachments/assets/828c28ec-ae95-46c5-8d3f-a5f8c4ca0f4a" />
 
 # 20.
-
-
-
-
+1. Buka file PCAP di Wireshark, lalu masuk ke Edit → Preferences → Protocols → TLS
+   Wireshark hanya bisa menampilkan paket TLS sebagai Application Data terenkripsi. Agar bisa membaca isi sebenarnya (misalnya HTTP), kita perlu mengaktifkan fitur dekripsi TLS. Fitur ini diatur melalui menu Preferences, khususnya pada bagian protokol TLS. Dengan membuka pengaturan ini, kita memberi tahu Wireshark bahwa akan ada tambahan informasi (kunci) yang bisa dipakai untuk mendekripsi sesi TLS.
+2. Isi (Pre)-Master-Secret log filename dengan keylogfile.txt
+3. paket TLS akan “terurai” jadi HTTP/HTTP2 (bukan lagi payload acak)
+4. Export object HTTP
+5. Temukan invest_20.dll
 
 
 
