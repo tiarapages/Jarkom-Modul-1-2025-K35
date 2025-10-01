@@ -361,6 +361,11 @@ Kemudian kita gunakan decode base 64 dan didapatkan soal terakhir sehingga flag 
 
 # 16.
 - What credential did the attacker use to log in? `ind@psg420:{6r_6e#TfT1p`
+  Dapat menggunakan filter dibawah ini karena digunakan untuk menemukan paket spesifik di mana klien (pengguna) mengirimkan nama penggunanya (username) ke server FTP. Sehingga dapat Mengidentifikasi username yang digunakan untuk login dan memulai analisis pada sesi login tertentu di tengah capture yang ramai.
+
+  ```
+  ftp.request.command == "USER"
+  ```
 
 <img width="1229" height="79" alt="Screenshot 2025-09-30 155516" src="https://github.com/user-attachments/assets/0fe35f97-b421-460a-8413-0aef1e493bce" />
 <img width="421" height="101" alt="Screenshot 2025-09-30 155533" src="https://github.com/user-attachments/assets/85db3570-ad17-4618-b2ad-8eeb0cb84eab" />
@@ -383,34 +388,43 @@ File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem oper
 
 # 17.
 
-Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi.
+Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi. Lalu pada gambar, ada 3 file lalu mencoba memasukkan secara random mana yang menjadi file pertama dan kedua.
 
 - What is the name of the first suspicious file? `Invoice&MSO-Request.doc`
   
 - What is the name of the second suspicious file? `knr.exe`
+
+  <img width="494" height="527" alt="Screenshot 2025-09-30 160949" src="https://github.com/user-attachments/assets/2df18c12-9fb9-4eca-aed9-3e178794ccf7" />
+<img width="736" height="158" alt="Screenshot 2025-09-30 161015" src="https://github.com/user-attachments/assets/312598dd-1fa1-4e4c-b91a-bd7212dfaffb" />
   
 - What is the hash of the second suspicious file (knr.exe)? `749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18`
+
+  File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem operasi. Dalam konteks praktikum ini, file tersebut digunakan sebagai bagian dari simulasi komunikasi antara node. Oleh karena itu, file `.exe` harus disimpan terlebih dahulu agar dapat dijalankan di lingkungan uji. Perintah `sha256sum` digunakan untuk menghasilkan nilai hash dari suatu file. Nilai hash ini berfungsi sebagai “sidik jari digital” file, yang unik untuk setiap isi file. Setelah menjalankan perintah `sha256sum` nama_file.exe, sistem akan menampilkan deretan karakter heksadesimal sepanjang 64 digit.
 
 ```
 KOMJAR25{M4ster_4n4lyzer_5e8X5lLodU1wEOR4jIwlznzkA}
 ```
+
+<img width="721" height="218" alt="Screenshot 2025-09-29 201814" src="https://github.com/user-attachments/assets/6c4a206d-8c0b-4c98-b229-81b25d8fd293" />
+
 
 # 18.
 
 Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut.
 
 - How many files are suspected of containing malware? `2`
-  
-<img width="494" height="527" alt="Screenshot 2025-09-30 160949" src="https://github.com/user-attachments/assets/2df18c12-9fb9-4eca-aed9-3e178794ccf7" />
-<img width="736" height="158" alt="Screenshot 2025-09-30 161015" src="https://github.com/user-attachments/assets/312598dd-1fa1-4e4c-b91a-bd7212dfaffb" />
 
+<img width="521" height="240" alt="Screenshot 2025-09-29 215641" src="https://github.com/user-attachments/assets/a22518cc-2357-4a9a-a8db-a57ce5af0c5c" />
+<img width="1312" height="199" alt="Screenshot 2025-09-29 215656" src="https://github.com/user-attachments/assets/e44054e0-55fb-4553-a323-b0f32bebf152" />
 
 - What is the name of the first malicious file? `d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe `
 
 - Apa nama file berbahaya yang kedua? `oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe`
 
-- What is the hash of the first malicious file? `59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040`
+  File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem operasi. Dalam konteks praktikum ini, file tersebut digunakan sebagai bagian dari simulasi komunikasi antara node. Oleh karena itu, file `.exe` harus disimpan terlebih dahulu agar dapat dijalankan di lingkungan uji. Perintah `sha256sum` digunakan untuk menghasilkan nilai hash dari suatu file. Nilai hash ini berfungsi sebagai “sidik jari digital” file, yang unik untuk setiap isi file. Setelah menjalankan perintah `sha256sum` nama_file.exe, sistem akan menampilkan deretan karakter heksadesimal sepanjang 64 digit.
 
+- What is the hash of the first malicious file? `59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040`
+  
 - What is the hash of the second malicious file? `cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560`
 
 ```
@@ -421,6 +435,13 @@ KOMJAR25{Y0u_4re_g0dl1ke_rd6nqSP2WXo3hnjT1XazFnLnk}
 
 # 19.
 Who sent the threatening message? `Your Life`
+
+Menggunakan filter 
+```
+frame contains "password"
+```
+
+Layar Wireshark akan langsung ter-filter dan hanya menampilkan paket-paket yang di dalamnya terkandung kata "password". karena biasanya pada threating message terdapat kata password, atau mencari dengan metode manual, biasanya packet yang threatening message berada pada bawah sendiri dan berwarna merah
 
 How much ransom did the attacker demand ($)? `1600`
 
