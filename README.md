@@ -225,7 +225,11 @@ Ulmo, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node Eru
 <img width="176" height="63" alt="Screenshot 2025-09-29 183216" src="https://github.com/user-attachments/assets/07a5f318-8ee7-40e6-9dab-0cb4a9f7bcb7" />
 
 - What are the user that successfully logged in? `n1enna:y4v4nn4_k3m3nt4r1`
-  Menggunakan cara manual dikarenakan merupakan Brute force, dan memilih paket terakhir karena Wireshark merekam semua percobaan secara berurutan, maka percobaan yang berhasil itu pasti terekam sebagai yang terakhir dalam rentetan serangan tersebut.
+  Menggunakan filter dibawah ini karena filter ini untuk menampilkan semua percobaan login (username dan password) atau cara manual dikarenakan merupakan Brute force, dan memilih paket terakhir karena Wireshark merekam semua percobaan secara berurutan, maka percobaan yang berhasil itu pasti terekam sebagai yang terakhir dalam rentetan serangan tersebut.
+
+  ```
+  frame contains "password"
+  ```
 
 <img width="1872" height="848" alt="Screenshot 2025-09-29 182650" src="https://github.com/user-attachments/assets/6a125162-b639-4f1c-b51a-f3598fc17afa" />
 
