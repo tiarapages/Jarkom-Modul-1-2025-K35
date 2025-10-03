@@ -472,7 +472,7 @@ File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem oper
 
 # 17.
 
-Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi. Menggunakan HTTP karena mencurigai file berbahaya itu diunduh dari sebuah situs web di internet.Lalu pada gambar, ada 3 file lalu mencoba memasukkan secara random mana yang menjadi file pertama dan kedua.
+Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut. HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi. Menggunakan HTTP karena protokol nya HTTP.Lalu pada gambar, ada 3 file lalu mencoba memasukkan secara random mana yang menjadi file pertama dan kedua.
 
 - What is the name of the first suspicious file? `Invoice&MSO-Request.doc`
   
@@ -494,7 +494,7 @@ KOMJAR25{M4ster_4n4lyzer_5e8X5lLodU1wEOR4jIwlznzkA}
 
 # 18.
 
-Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut. Menggunakan SMB karena mencurigai file berbahaya itu disalin dari satu komputer ke komputer lain di dalam jaringan lokal yang sama, misalnya dari sebuah shared folder.
+Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut. Menggunakan SMB karena protokol menggunakan SMB dengan melihat di `statistics` lalu di `Protocol hierarchy` akan terlihat protokol apa yang digunakan
 
 - How many files are suspected of containing malware? `2`
 
