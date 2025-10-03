@@ -22,6 +22,16 @@ iface eth2 inet static
 	address [Prefix IP].2.1
 	netmask 255.255.255.0
 ```
+- iface eth0 inet dhcp:  eth0 yang terhubung ke nat0 (menuju internet). Konfigurasinya dhcp karena Eru meminta alamat IP secara otomatis dari jaringan luar (dari NAT1, anggap saja seperti meminta nomor alamat dari pengelola kompleks). Ia tidak menentukan IP-nya sendiri.
+
+- iface eth1 inet static: eth1 yang terhubung ke Switch1 (Lantai 1). Konfigurasinya static karena Eru harus punya alamat yang tetap dan pasti di lantai ini, yaitu [Prefix IP].1.1. Alamat ini akan menjadi gateway (pintu keluar) bagi semua perangkat di Lantai 1 (Melkor dan Manwe).
+
+- iface eth2 inet static: eth2 yang terhubung ke Switch2 (Lantai 2). Alamat statisnya adalah [Prefix IP].2.1, yang berfungsi sebagai gateway untuk semua perangkat di Lantai 2 (Varda dan Ulmo).
+
+- Gateway adalah alamat IP yang digunakan oleh sebuah perangkat untuk mengirim paket data yang ditujukan ke luar jaringan lokalnya.
+
+- identifikasi host dan lokasi jaringan. Alamat ini memungkinkan sebuah perangkat untuk dapat diidentifikasi secara unik 
+
 Melkor
 ```auto eth0
 iface eth0 inet static
