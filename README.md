@@ -454,7 +454,7 @@ Kemudian kita gunakan decode base 64 dan didapatkan soal terakhir sehingga flag 
 <img width="1229" height="79" alt="Screenshot 2025-09-30 155516" src="https://github.com/user-attachments/assets/0fe35f97-b421-460a-8413-0aef1e493bce" />
 <img width="421" height="101" alt="Screenshot 2025-09-30 155533" src="https://github.com/user-attachments/assets/85db3570-ad17-4618-b2ad-8eeb0cb84eab" />
 
-- How many files are suspected of containing malware? `5` -> Menggunakan `ftp-data` lalu akan muncul 5 yaitu QWERT
+- How many files are suspected of containing malware? `5` -> Menggunakan `ftp-data` yaitu Perintah atau filter yang digunakan untuk mengisolasi dan melihat isi data sebenarnya yang ditransfer melalui FTP, seperti file atau daftar direktori, dan memisahkannya dari perintah kontrol FTP. lalu akan muncul 5 yaitu QWERT
 
 File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem operasi. Dalam konteks praktikum ini, file tersebut digunakan sebagai bagian dari simulasi komunikasi antara node. Oleh karena itu, file `.exe` harus disimpan terlebih dahulu agar dapat dijalankan di lingkungan uji. Perintah `sha256sum` digunakan untuk menghasilkan nilai hash dari suatu file. Nilai hash ini berfungsi sebagai “sidik jari digital” file, yang unik untuk setiap isi file. Setelah menjalankan perintah `sha256sum` nama_file.exe, sistem akan menampilkan deretan karakter heksadesimal sepanjang 64 digit.
 
@@ -472,7 +472,7 @@ File berekstensi `.exe` merupakan file eksekusi yang dijalankan oleh sistem oper
 
 # 17.
 
-Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi. Lalu pada gambar, ada 3 file lalu mencoba memasukkan secara random mana yang menjadi file pertama dan kedua.
+Fitur Export Objects pada Wireshark digunakan untuk mengekstrak data atau objek yang ditangkap dari sebuah sesi komunikasi jaringan. Ketika protokol tertentu (misalnya HTTP, FTP, SMB, TFTP, dll.) terbaca dalam paket, Wireshark mampu merekonstruksi dan mengekstrak file yang ditransfer melalui protokol tersebut.HTTP menunjukkan bahwa Wireshark mendeteksi adanya lalu lintas HTTP di antara node yang sedang di-capture. Dengan menggunakan menu ini, pengguna dapat mengekspor file, halaman web, atau objek lain yang dikirim melalui protokol HTTP selama sesi komunikasi. Menggunakan HTTP karena mencurigai file berbahaya itu diunduh dari sebuah situs web di internet.Lalu pada gambar, ada 3 file lalu mencoba memasukkan secara random mana yang menjadi file pertama dan kedua.
 
 - What is the name of the first suspicious file? `Invoice&MSO-Request.doc`
   
@@ -494,7 +494,7 @@ KOMJAR25{M4ster_4n4lyzer_5e8X5lLodU1wEOR4jIwlznzkA}
 
 # 18.
 
-Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut.
+Fitur Export Objects → SMB pada Wireshark digunakan untuk mengekstrak objek atau file yang ditransfer melalui protokol SMB (Server Message Block). Protokol SMB umumnya digunakan dalam sistem operasi berbasis Windows untuk layanan berbagi berkas (file sharing), printer, maupun komunikasi antar-proses. Dengan memilih opsi ini, Wireshark akan menampilkan daftar file atau objek yang berhasil ditangkap selama sesi komunikasi SMB. Dari daftar tersebut, pengguna dapat menyimpan file tertentu ke dalam komputer lokal untuk dianalisis lebih lanjut. Menggunakan SMB karena mencurigai file berbahaya itu disalin dari satu komputer ke komputer lain di dalam jaringan lokal yang sama, misalnya dari sebuah shared folder.
 
 - How many files are suspected of containing malware? `2`
 
