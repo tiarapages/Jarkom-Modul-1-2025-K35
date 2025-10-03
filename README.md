@@ -187,36 +187,72 @@ Masuk Sebagai Ainur dan Melkor serta uji kedua file tersebut sama sama untuk hak
 Ulmo, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node Eru. Lakukan koneksi sebagai client dari node Ulmo ke FTP Server Eru menggunakan user ainur.
 
 <img width="832" height="372" alt="image" src="https://github.com/user-attachments/assets/b5b9c131-8fb6-4e04-a1c6-070d60de19af" />
+
+Pertama kita akan login sebagai ulmo dan mendownload link tersebut menggunakan `wget`, yang disana kemudian kita akan setup semua tools yang dibutuhkan untuk mendownload ftp di Ulmo. Setelah download selesai kemudian kita akan masuk ke ftp server eru dengan `ftp 10.81.1.1` dan akan login sebagai ainur.
+
 <img width="836" height="383" alt="image" src="https://github.com/user-attachments/assets/ea08dbb0-45bb-40cb-8ea9-f09d88a11367" />
+
+Disana kita akan melakukan upload file dari Node Ulmo ke ftp server Eru user Ainur dengan command `put cuaca.txt` dan `put mendung.jpg`. Proses akan berjalan dan catat hasilnya di Wireshark.
 
 # 9.
 <img width="831" height="453" alt="image" src="https://github.com/user-attachments/assets/7a498984-d10d-4b44-b5b0-1ce91cba0ef4" />
 
+Pertama kita akan mendownload file tersebut di Node Manwe. Dengan Asumsi user ainur masih ada di Node Eru, jika hilang maka bisa ulang konfigurasi user ftp di no. 7. Kemudian kita akan kembali ke Node Eru dan setup ulang konfigurasi vsptd di Eru agar User Ainur hanya bisa mengakses read dengan menambahkan command berikut `/etc/vsftpd/user_conf/ainur
+write_enable=NO` setelah itu restart ulang vsptd dan kembali ke Node Manwe.
+
+<img width="1002" height="616" alt="image" src="https://github.com/user-attachments/assets/d2e6976b-4aa4-42af-93af-3e07e409d60e" />
+
+Di Node Manwe kita akan melakukan ftp server dengan menggunakan user ainur dan mengetes apakah memang user Ainur hanya bisa read, dimana saat kita put user Ainur bisa melakukannya sedangkan saat di get user AInur tidak bisa melakukannya.
+
+
 # 10.
 <img width="959" height="554" alt="image" src="https://github.com/user-attachments/assets/a61137e7-3448-4053-9d28-109193cca28c" />
+
+Pada No.10 ini kita akan masuk ke Node Melkor dan mencoba test serangan menggunakan ping ke arah server IP Eru. Dapat kita lihat di gambar tertera jika Melkor melakukan perintah 100 ping dengan average time kurang dari 1s. Dapat kita lihat juga jika tidak ada packet loss dari Node Eru setelah Melkor melakukan ping tersebut.
 
 # 11.
 <img width="647" height="183" alt="image" src="https://github.com/user-attachments/assets/b3b1dc77-8e4d-4005-a684-5aad09a24844" />
 
+Sebelum melakukan soal tersebut kita hendaknya mengkatifkan capture Wireshark diantara Node Eru dan Melkor agar semua task tercatat seperti yang ditunjukkan pada soal.
+
 <img width="987" height="266" alt="image" src="https://github.com/user-attachments/assets/fe0b96fa-d475-4efb-be82-4f90d21f5a01" />
+
+Disini saya pertama akan menambahkan user upin ke Melkor sebagai perintah pada soal ini. Dan akan menambahkan tools inetd untuk masuk ke user melkor. Kita juga perlu konfigurasi isi inetd untuk merubah command berikut `ftp     stream  tcp     nowait  root    /usr/sbin/tcpd  /usr/sbin/in.ftpd -l -a`. Setelah itu lakukan restart device di Node Melkor. Dan berpindah ke Node Eru untuk mencoba login.
 
 <img width="560" height="247" alt="image" src="https://github.com/user-attachments/assets/7041928f-0bc0-45f5-afe6-fadea3e4b59a" />
 
+Kita jalankan server Melkor di Node Eru dengan perintah `telnet 10.81.1.2` yang merupakan IP Eru. Disana kita akan mandapat sesuatu pada WIreshark.
+
 <img width="931" height="854" alt="image" src="https://github.com/user-attachments/assets/b42310a5-ec8a-4745-a383-d82379f13fd3" />
+
+Dapat kita lihat jika usaha login menghasilkan leak username dan Password sehingga dapat kita ketahui hasilnya.
 
 # 12.
 <img width="854" height="466" alt="image" src="https://github.com/user-attachments/assets/0e4af7c6-0493-4596-b53c-2d3ad8317de8" />
 
+Di no.12 kita perlu masuk sebagai Eru dan mencoba menjalankan netcat ke arah Melkor dari 2 part yang terbuka yaitu 21 dan 80. Perlu diketahui jika gagal kita perlu install masing maisng `vsftpd` dan `apache` untuk menjalankan netcat di kedua port tersebut. Setelah install maka akan berhasil dan netcat ke port 666 gagal karena memang port tersebut tertutup.
+
 # 13. 
 <img width="978" height="627" alt="image" src="https://github.com/user-attachments/assets/70553c05-6544-4c8e-b322-a68da613782c" />
 
+Pertama kita perlu integrasikan WIreshark untuk capture sesi antara Eru dan Varda. Kemudian kita juga perlu mendownload ssh server dikedua Node untuk melakukan eksekusi di soal ini.
+kita gunakan command `apt update && apt install openssh-server` dan menunggu hingga instalasi sukses.
+
 <img width="989" height="484" alt="image" src="https://github.com/user-attachments/assets/eb23cdd3-3754-4a44-a0f6-65d1ac6f90bc" />
+
+Kita jalankan openssh server di Node Eru terlebih dahulu dan mengaktfikannya. Disini saya menambahkan user baru bernama eru yang nanti akan digunakan untuk masuk dari Node Varda. 
 
 <img width="860" height="336" alt="image" src="https://github.com/user-attachments/assets/03ebea1b-97fb-45e4-8f38-ae1c9d5a7aa2" />
 
+Setelah itu kita kana kembali ke terminal varda dan menjalankan ssh untuk Node eru dengan command `ssh eru@10.81.1.1` yang nantinya proses akan menjalankan dengan ebberapa warning serta masuk ke user Eru dari Node Eru.
+
 <img width="1008" height="459" alt="image" src="https://github.com/user-attachments/assets/4038e056-1556-43f6-90c4-f131e7838f4d" />
 
+Kita akan masuk dengan nama eru@eru yang menandakan login berhasi melalui ssh. Kita juga akan tahu jika semua interaksi yang kita lakukan di Node Eru akan kita dapat deteksi melalui Node Varda dengan tools ssh ini. Misal kita tambahkan suatu folder di Eru maka Varda juga akan bisa mengakses isi file tersebut.
+
 <img width="673" height="330" alt="image" src="https://github.com/user-attachments/assets/bf44a9c6-306a-4fd5-866e-9d323da8338b" />
+
+Saat kita coba capture di Wireshark kita tidak akan bisa melihat usn dan pwd karena memang sistem kerja telnet dan ssh berbeda. Pada sesi Telnet, username dan password terlihat jelas di Wireshark karena protokol ini tidak menggunakan enkripsi, sehingga semua data dikirim dalam bentuk plain text. Sebaliknya, pada sesi SSH, seluruh data (termasuk user dan password) dienkripsi end-to-end, sehingga yang tampak di Wireshark hanya paket terenkripsi acak dan tidak bisa dibaca.
 
 # 14.
 - How many packets are recorded in the pcapng file? `500358`
