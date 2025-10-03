@@ -254,6 +254,9 @@ Kita akan masuk dengan nama eru@eru yang menandakan login berhasi melalui ssh. K
 
 Saat kita coba capture di Wireshark kita tidak akan bisa melihat usn dan pwd karena memang sistem kerja telnet dan ssh berbeda. Pada sesi Telnet, username dan password terlihat jelas di Wireshark karena protokol ini tidak menggunakan enkripsi, sehingga semua data dikirim dalam bentuk plain text. Sebaliknya, pada sesi SSH, seluruh data (termasuk user dan password) dienkripsi end-to-end, sehingga yang tampak di Wireshark hanya paket terenkripsi acak dan tidak bisa dibaca.
 
+<img width="1621" height="963" alt="image" src="https://github.com/user-attachments/assets/2722f09e-59aa-4459-b040-e932e1e58702" />
+
+
 # 14.
 - How many packets are recorded in the pcapng file? `500358`
   Dengan Melihat pojok bawah Wireshark (Status Bar)
