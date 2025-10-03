@@ -62,7 +62,7 @@ iface eth0 inet static
 ```
 -Lalu, Start semua nodes hingga semua berubah menjadi warna hijau
 <img width="1423" height="740" alt="Screenshot 2025-09-30 121541" src="https://github.com/user-attachments/assets/d9e10460-2131-477d-8259-fe77f497d540" />
--Lalu, lakukan `ip a` dan pastikan ip sesuai, simpan hasilnya 
+-Lalu, lakukan `ip a` dan pastikan ip sesuai, perintah ip a (atau ip addr) digunakan untuk melihat semua alamat IP dan informasi antarmuka jaringan (network interfaces) lalu simpan hasilnya 
 
 -ulmo = `10.81.2.3` 
 
@@ -77,7 +77,7 @@ iface eth0 inet static
 ***
 
 # 2.
-Konfigurasi agar Eru yang berperan sebagai Router dapat terhubung dengan internet. Hal ini bertujuan untuk memberikan akses konektivitas eksternal sehingga jaringan lokal yang telah dibangun dapat berkomunikasi dengan jaringan global. Agar terhubung ke jaringan global, menggunakan
+Konfigurasi agar Eru yang berperan sebagai Router dapat terhubung dengan internet. Hal ini bertujuan untuk memberikan akses konektivitas eksternal sehingga jaringan lokal yang telah dibangun dapat berkomunikasi dengan jaringan global. Agar terhubung ke jaringan global, menggunakan perintah `cat /etc/resolv.conf` digunakan untuk melihat server DNS mana yang sedang digunakan oleh komputer
 
 ```
 cat /etc/resolv.conf
@@ -102,7 +102,7 @@ root@Manwe:~# ping 10.81.2.3
 
 # 4.
 Eru ingin agar setiap Ainur (Client) dapat mandiri. Oleh karena itu pastikan agar setiap Client dapat tersambung ke internet.
--Yaitu dengan
+- Yaitu dengan
 ```
 cat /etc/resolv.conf
 ```
@@ -112,7 +112,7 @@ nameserver 192.168.122.1
 ```
 
 <img width="1212" height="172" alt="Screenshot 2025-09-30 131550" src="https://github.com/user-attachments/assets/e4feac25-2af2-4c76-aeea-13c03127aaae" />
--Langkah selanjutnya kita mencoba 1 per 1 hingga semua terhubung ke internet dengan menggunakan 
+- Langkah selanjutnya kita mencoba 1 per 1 hingga semua terhubung ke internet dengan menggunakan 
 
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf 
@@ -139,8 +139,38 @@ Agar semua konfigurasi yang telah dilakukan tidak hilang ketika node di-restart,
 
 ```
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.81.0.0/16  
+```
+
+Tentu, mari kita bedah kedua perintah itu satu per satu.
+
+## 1. iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 10.81.0.0/16
+Perintah ini pada dasarnya mengubah komputermu (misalnya Eru dari diagram sebelumnya) menjadi sebuah router internet untuk semua perangkat di jaringan internalnya. 
+
+- iptables: Ini adalah nama programnya, sebuah firewall dan alat untuk memanipulasi paket data di Linux.
+
+- t nat: Memberitahu iptables bahwa kita ingin bekerja dengan tabel NAT. 
+
+- A POSTROUTING: -A berarti Append (tambahkan aturan baru). POSTROUTING adalah nama "rantai" atau tahapan. Artinya, aturan ini akan diterapkan sesaat sebelum paket data benar-benar dikirim keluar dari komputer, setelah semua proses routing internal selesai.
+
+- o eth0: -o berarti output interface. Aturan ini hanya berlaku untuk paket data yang akan keluar melalui antarmuka eth0 (pintu utama ke internet).
+
+- s 10.81.0.0/16: -s berarti source. Aturan ini hanya berlaku jika paket data berasal dari (source) alamat IP mana pun di dalam rentang 10.81.0.0 sampai 10.81.255.255. Ini mencakup semua perangkat di belakang Eru (Melkor, Manwe, Varda, Ulmo).
+
+- j MASQUERADE: -j berarti jump (target aksi). Ini adalah perintah utamanya. MASQUERADE berarti "samarkan". Perintahkan iptables untuk mengganti alamat IP sumber (misalnya 10.81.1.2 dari Melkor) dengan alamat IP publik yang ada di antarmuka eth0. iptables juga akan secara otomatis mengingat koneksi ini, sehingga ketika ada balasan dari internet, ia tahu harus meneruskannya kembali ke Melkor.
+
+
+```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+
+Perintah ini digunakan untuk mengatur (atau menimpa) konfigurasi DNS komputer secara paksa.
+
+- echo nameserver 192.168.122.1: Perintah echo hanya berfungsi untuk menampilkan teks yang mengikutinya. Jadi, bagian ini hanya menghasilkan sebuah baris teks yaitu "nameserver 192.168.122.1".
+
+- >: Ini adalah redirect operator. Simbol ini mengambil output dari perintah di sebelah kirinya (echo ...) dan menuliskannya ke dalam file di sebelah kanannya.
+PENTING: Simbol > akan menghapus semua isi file yang lama dan menggantinya dengan output yang baru.
+
+- /etc/resolv.conf: Ini adalah file tujuan, yaitu file yang berisi daftar server DNS yang harus digunakan oleh komputer.
 
 <img width="1702" height="654" alt="Screenshot 2025-09-30 144622" src="https://github.com/user-attachments/assets/5451b21d-3339-4570-860f-d11274860ee6" /> 
 
@@ -151,27 +181,28 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 ***
 # 6.
 Melkor mencoba melakukan penyusupan (interception) terhadap komunikasi antara Manwe dan Eru. Untuk itu, file uji yang telah disediakan diunduh menggunakan perintah wget, kemudian dijalankan pada node Manwe. Selanjutnya dilakukan packet sniffing menggunakan Wireshark pada koneksi antara Manwe dan Eru. Setelah itu, diterapkan display filter untuk menampilkan seluruh paket yang berasal dari atau menuju alamat IP milik Manwe.
--Pada terminal node Manwe, unduh file wget
+
+- Pada terminal node Manwe, unduh file wget
 ```
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=1bE3kF1Nclw0VyKq4bL2VtOOt53IC7lG5' -O traffic.zip
 ```
--Unzip file
+- Unzip file
 ```
 unzip traffic.zip
 ```
--lalu, akan ada 2 file yaitu `traffic.sh` dan `traffic.zip`, pilih `traffic.sh`
+- lalu, akan ada 2 file yaitu `traffic.sh` dan `traffic.zip`, pilih `traffic.sh`
 ```
 cat traffic.sh
 ```
--Berikan izin eksekusi pada file
+- Berikan izin eksekusi pada file
 ```
 chmod x+ traffic.sh
 ```
--Jalankan file tersebut
+- Jalankan file tersebut
 ```
 ./traffic.sh
 ```
--Setelah proses packet sniffing dijalankan, Wireshark akan menampilkan paket-paket komunikasi antara Manwe dan Eru sesuai dengan display filter yang telah diterapkan. Proses capture dibiarkan berlangsung hingga seluruh komunikasi yang dibutuhkan berhasil ditangkap. Setelah itu, proses capture dihentikan dan hasil tangkapan paket disimpan
+Setelah proses packet sniffing dijalankan, Wireshark akan menampilkan paket-paket komunikasi antara Manwe dan Eru sesuai dengan display filter yang telah diterapkan. Proses capture dibiarkan berlangsung hingga seluruh komunikasi yang dibutuhkan berhasil ditangkap. Setelah itu, proses capture dihentikan dan hasil tangkapan paket disimpan
 
 ***
 
