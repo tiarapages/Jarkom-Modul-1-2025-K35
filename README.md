@@ -445,7 +445,7 @@ Kemudian kita gunakan decode base 64 dan didapatkan soal terakhir sehingga flag 
 
 # 16.
 - What credential did the attacker use to log in? `ind@psg420:{6r_6e#TfT1p`
-  Dapat menggunakan filter dibawah ini karena digunakan untuk menemukan paket spesifik di mana klien (pengguna) mengirimkan nama penggunanya (username) ke server FTP. Sehingga dapat Mengidentifikasi username yang digunakan untuk login dan memulai analisis pada sesi login tertentu di tengah capture yang ramai.
+  Dapat menggunakan filter dibawah ini karena digunakan untuk menemukan paket spesifik di mana klien (pengguna) mengirimkan nama penggunanya (username) ke server FTP. Sehingga dapat Mengidentifikasi username yang digunakan untuk login dan memulai analisis pada sesi login tertentu di tengah capture yang ramai. Menggunakan FTP karena FTP adalah protokol yang sangat tua yang dirancang untuk satu tujuan: mentransfer file antar komputer. Masalah utamanya adalah keamanan.
 
   ```
   ftp.request.command == "USER"
